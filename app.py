@@ -5,7 +5,7 @@ import os
 from werkzeug.utils import secure_filename
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask('__name__')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///video_games.db'
 app.config['UPLOAD_FOLDER'] = 'static/images'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
@@ -211,7 +211,5 @@ def admin_feedback():
 
 
 if __name__ == '__main__':
-    from os import environ
-
-    port = int(environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(
+            debug=True)
